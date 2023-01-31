@@ -6,9 +6,10 @@ export const Container = styled.header`
   height: 10.5rem;
   width: 100%;
 
-  border-bottom-width: .1rem;
+  border-bottom-width: 0.1rem;
   border-bottom-style: solid;
-  border-bottom-color: ${({theme}) => theme.COLORS.BACKGROUND_700};
+  border-bottom-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
 
   display: flex;
   justify-content: space-between;
@@ -34,12 +35,12 @@ export const Profile = styled.div`
 
     span {
       font-size: 1.4rem;
-      color: ${({theme}) => theme.COLORS.GRAY_100}
+      color: ${({ theme }) => theme.COLORS.GRAY_100};
     }
 
     strong {
       font-size: 1.8rem;
-      color: ${({theme}) => theme.COLORS.WHITE}
+      color: ${({ theme }) => theme.COLORS.WHITE};
     }
   }
 `;
@@ -49,7 +50,7 @@ export const Logout = styled.button`
   background: none;
 
   > svg {
-    color: ${({theme}) => theme.COLORS.GRAY_100};
+    color: ${({ theme }) => theme.COLORS.GRAY_100};
     font-size: 3.6rem;
   }
 `;
