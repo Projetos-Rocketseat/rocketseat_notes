@@ -28,17 +28,22 @@ export function Home() {
           <ButtonText title="NodeJS" />
         </li>
       </Menu>
+
       <Search>
         <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
       </Search>
+
       <Content>
         <Section title="Minhas Notas">
           <Note
             data={{
               title: "React",
               tags: [
-                { id: 1, name: "react" },
-                { id: 2, name: "rocketseat" },
+                { id: "1", name: "React" },
+                { id: "2", name: "MySQL" },
+                { id: "3", name: "NodeJS" },
+                { id: "4", name: "Rocketseat" },
+                { id: "5", name: "Git" },
               ],
             }}
           />
