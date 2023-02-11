@@ -24,12 +24,12 @@ export const Brand = styled.div`
 
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: ${({ theme }) => theme.COLORS.ORANGE};
+  border-bottom-color: ${({ theme }) => theme.COLORS.GREEN};
   background-color: ${({ theme }) => theme.COLORS.BACKGROUN_900};
 
   > h1 {
     font-size: 2.4rem;
-    color: ${({ theme }) => theme.COLORS.ORANGE};
+    color: ${({ theme }) => theme.COLORS.GREEN};
   }
 `;
 export const Menu = styled.ul`
@@ -55,7 +55,7 @@ export const Content = styled.div`
 export const NewNote = styled.button`
   grid-area: newnote;
 
-  background-color: ${({ theme }) => theme.COLORS.ORANGE};
+  background-color: ${({ theme }) => theme.COLORS.GREEN};
   border: none;
 
   display: flex;
