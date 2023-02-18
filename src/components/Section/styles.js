@@ -9,6 +9,7 @@ export const Container = styled.section`
     border-bottom-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
 
     padding-bottom: 1.6rem;
+    margin-bottom: 1.6rem;
 
     color: ${({ theme }) => theme.COLORS.GRAY_100};
     font-size: 2rem;
