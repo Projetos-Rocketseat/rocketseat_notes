@@ -6,12 +6,11 @@ import { api } from "../../services/api";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-
 import { Container, Form, Background } from "./styles";
 import { DescriptionAlerts } from "../../components/Alert";
 
 export function SignUp() {
-  const [alertSuccess, setAlertSuccecc] = useState(true);
+  const [alertSuccess, setAlertSuccecc] = useState(false);
   const [alertMessage, setAlertMessage] = useState(false);
 
   const [name, setName] = useState("");
@@ -67,17 +66,15 @@ export function SignUp() {
           icon={FiLock}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {alertMessage ? (
+
+        {alertSuccess ? (
           <DescriptionAlerts
-            placeholder="Senha"
-            type="password"
-            icon={FiUser}
-            onChange={(e) => setPassword(e.target.value)}
+            title={"Atenção"}
+            text={"Todos os campos devem ser preenchidos"}
           />
         ) : (
           ""
         )}
-        {alertSuccess ? <DescriptionAlerts /> : ""}
 
         <Button title={"Cadastrar"} onClick={handleSignUp} />
 

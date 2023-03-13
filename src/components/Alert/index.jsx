@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { HowToReg } from "@mui/icons-material";
 
-export function DescriptionAlerts() {
+export function DescriptionAlerts({ title, text }) {
   return (
     <Container>
       <section className="info">
@@ -9,8 +9,8 @@ export function DescriptionAlerts() {
           <HowToReg />
         </div>
         <div className="text">
-          <h5>Teste</h5>
-          <p>Todos os campos devem ser preenchidos</p>
+          <h5>{title}</h5>
+          <p>{text}</p>
         </div>
       </section>
     </Container>
