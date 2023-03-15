@@ -33,6 +33,22 @@ function AuthProvider({ children }) {
     setData({});
   }
 
+  async function updateProfile({ user }) {
+    try {
+      await api.put("/users", user);
+      localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
+
+      setData({ user, token: data.token });
+      alert("Perfil atualizado com sucesso!");
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert("Não foi possível eatualizar o seu perfil!");
+      }
+    }
+  }
+
   useEffect(() => {
     const user = localStorage.getItem("@rocketnotes:user");
     const token = localStorage.getItem("@rocketnotes:token");
