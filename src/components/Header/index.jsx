@@ -3,16 +3,23 @@ import { useAuth } from "../../hooks/auth";
 
 import { Container, Profile, Logout } from "./styles";
 
+import { api } from "../../services/api";
+
 export function Header() {
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder;
+
   return (
     <Container>
       <Profile to="/profile">
-        <img src="https://github.com/rafmob.png" alt="Foto do usuário" />
+        <img src={avatarUrl} alt={user.name} />
 
         <div>
           <span>Bem-vindo</span>
-          <strong>Rafael Mendes</strong>
+          <strong>{user.name}</strong>
         </div>
       </Profile>
 

@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
 
+import { api } from "../../services/api";
+
+import avatarPlaceholder from "../../assets/placeholder.image.png";
+
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
@@ -18,17 +22,32 @@ export function Profile() {
   const [passwordOld, setPasswordOld] = useState();
   const [passwordNew, setPasswordNew] = useState();
 
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder;
+
+  const [avatar, setAvatar] = useState(avatarUrl);
+  const [avatarFile, setAvatarFile] = useState(null);
+
   async function handleUpdate() {
     const user = {
       name,
       email,
       password: passwordNew,
-      old_passwor: passwordOld,
+      old_password: passwordOld,
     };
 
-    await updateProfile({ user });
+    await updateProfile({ user, avatarFile });
   }
-  console.log(user);
+
+  function handleChangeAvatar(event) {
+    const file = event.target.files[0];
+    setAvatarFile(file);
+
+    const imagePreview = URL.createObjectURL(file);
+    setAvatar(imagePreview);
+  }
+
   return (
     <Container>
       <header>
@@ -39,10 +58,10 @@ export function Profile() {
 
       <Form>
         <Avatar>
-          <img src="https://github.com/rafmob.png" alt="Foto do usuário" />
+          <img src={avatar} alt="Foto do usuário" />
           <label htmlFor="avatar">
             <FiCamera />
-            <input id="avatar" type="file" />
+            <input id="avatar" type="file" onChange={handleChangeAvatar} />
           </label>
         </Avatar>
         <Input
