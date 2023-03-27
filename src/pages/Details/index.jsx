@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
+
 import { Container, Links, Content } from "./styles";
 
 import { Header } from "../../components/Header";
@@ -7,48 +11,56 @@ import { Tag } from "../../components/Tag";
 import { ButtonText } from "../../components/ButtonText";
 
 export function Details() {
+  const [data, setData] = useState(null);
+
+  const params = useParams();
+
+  useEffect(() => {
+    async function fetchNote() {
+      const response = await api.get(`/notes/${params.id}`);
+      setData(response.data);
+    }
+
+    fetchNote();
+  });
+
   return (
     <Container>
       <Header />
+      {data && (
+        <main>
+          <Content>
+            <ButtonText title="Excluir Nota" />
 
-      <main>
-        <Content>
-          <ButtonText title="Excluir Nota" />
+            <h1>{data.title}</h1>
 
-          <h1>Introdução ao ReactJS</h1>
+            <p>{data.description}</p>
+            {data.links && (
+              <Section title="Links Úteis">
+                <Links>
+                  {data.links.map((link) => (
+                    <li key={String(link.id)}>
+                      <a href={link.url} target="_blank">
+                        {link.url}
+                      </a>
+                    </li>
+                  ))}
+                </Links>
+              </Section>
+            )}
 
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum,
-            eaque nihil eveniet nulla similique ut iure repellendus modi
-            voluptatum, voluptatibus, sed quo quisquam culpa! Maxime itaque
-            aspernatur corrupti vitae deleniti beatae inventore fugiat.
-            Recusandae delectus pariatur est molestias natus aperiam magnam,
-            facere fugiat distinctio, quaerat laudantium cum? Placeat, voluptate
-            vero cupiditate. Quod eveniet maxime suscipit aspernatur, officiis
-            pariatur fugiat dolorem itaque iusto! Est, quam.
-          </p>
+            {data.tags && (
+              <Section title="Marcadores">
+                {data.tags.map((tag) => {
+                  <Tag key={String(tag.id)} title={tag.name} />;
+                })}
+              </Section>
+            )}
 
-          <Section title="Links Úteis">
-            <Links>
-              <li>
-                <a href="#">https://www.rocketseat.com.br/</a>
-              </li>
-              <li>
-                <a href="#">https://www.rocketseat.com.br/</a>
-              </li>
-            </Links>
-          </Section>
-          <Section title="Marcadores">
-            <Tag title="NodeJs" />
-            <Tag title="JavaScript" />
-            <Tag title="NodeJS" />
-            <Tag title="PHP" />
-            <Tag title="MySQL" />
-          </Section>
-
-          <Button title="Voltar" />
-        </Content>
-      </main>
+            <Button title="Voltar" />
+          </Content>
+        </main>
+      )}
     </Container>
   );
 }
