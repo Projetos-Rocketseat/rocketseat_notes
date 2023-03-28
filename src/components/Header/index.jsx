@@ -5,6 +5,8 @@ import { Container, Profile, Logout } from "./styles";
 
 import { api } from "../../services/api";
 
+import avatarPlaceholder from "../../assets/placeholder.image.png";
+
 export function Header() {
   const { signOut, user } = useAuth();
 
