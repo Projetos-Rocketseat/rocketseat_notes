@@ -26,4 +26,13 @@ export const Container = styled.div`
   > svg {
     margin-left: 1.6rem;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: none;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 `;
