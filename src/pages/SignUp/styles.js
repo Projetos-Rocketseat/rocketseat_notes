@@ -17,23 +17,28 @@ export const Form = styled.form`
   align-items: center;
   text-align: center;
 
+  .button {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
   > h1 {
-    font-size: 4.8rem;
+    font-size: 2.8rem;
     color: ${({ theme }) => theme.COLORS.GREEN};
   }
 
   > h2 {
-    font-size: 2.4rem;
-    margin: 4.8rem 0;
+    font-size: 1.8rem;
+    margin: 2rem 0 3rem;
   }
 
   > p {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: ${({ theme }) => theme.COLORS.GRAY_100};
   }
 
   > a {
-    margin-top: 12.4rem;
+    margin-top: 2rem;
     color: ${({ theme }) => theme.COLORS.GREEN};
   }
 `;

@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   width: 100%;
+  min-height: 5rem;
   background-color: ${({ theme }) => theme.COLORS.GREEN};
-  color: ${({ theme }) => theme.BACKGROUND_800};
+  color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
 
   height: 5.6rem;
   border: 0;

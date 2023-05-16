@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
+  width: 100%;
+
   section {
-    width: 100%;
     display: flex;
     align-items: center;
     padding: 0.8rem;
     border-radius: 1rem;
   }
 
-  > .text {
-    padding: 0.5rem;
+  .text {
     display: flex;
+    padding-left: 1rem;
     flex-direction: column;
     -webkit-box-pack: center;
-    justify-content: center;
     align-items: flex-start;
   }
 

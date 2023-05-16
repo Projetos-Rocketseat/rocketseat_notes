@@ -10,7 +10,7 @@ import { Container, Form, Background } from "./styles";
 import { DescriptionAlerts } from "../../components/Alert";
 
 export function SignUp() {
-  const [alertSuccess, setAlertSuccecc] = useState(false);
+  const [alertSuccess, setAlertSuccess] = useState(false);
   const [alertMessage, setAlertMessage] = useState(false);
 
   const [name, setName] = useState("");
@@ -18,26 +18,27 @@ export function SignUp() {
   const [password, setPassword] = useState("");
 
   function handleSignUp() {
-    console.log(name, email, password);
-    if (!name || !email || !password) {
-      setAlertMessage(true);
-      return alert("Todos os campos devem ser preenchidos");
-    }
+    // if (!name || !email || !password) {
+    //   setAlertMessage(true);
+    //   return alert("Todos os campos devem ser preenchidos");
+    // }
 
     api
       .post("/users", { name, email, password })
-      .then(() => {
-        setAlertSuccecc(true);
+      .then((res) => {
+        console.log(res);
+        if (res.data) {
+          setAlertSuccess(true);
+        }
       })
       .catch((error) => {
         if (error.response) {
-          alert(error.response.data.message);
+          setAlertMessage(error.response.data.message);
         } else {
           alert("Não foi possível cadastrar");
         }
       });
   }
-  console.log(alertMessage);
 
   return (
     <Container>
@@ -48,6 +49,7 @@ export function SignUp() {
         <p>Aplicação para salvar e gerenciar seus links úteis.</p>
 
         <h2>Crie sua conta!</h2>
+
         <Input
           placeholder="Nome"
           type="text"
@@ -67,16 +69,17 @@ export function SignUp() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        {alertSuccess ? (
-          <DescriptionAlerts
-            title={"Atenção"}
-            text={"Todos os campos devem ser preenchidos"}
-          />
-        ) : (
-          ""
+        <span className="button">
+          <Button title={"Cadastrar"} onClick={handleSignUp} />
+        </span>
+
+        {alertMessage && (
+          <DescriptionAlerts title={"Atenção!"} text={alertMessage} />
         )}
 
-        <Button title={"Cadastrar"} onClick={handleSignUp} />
+        {alertSuccess && (
+          <DescriptionAlerts title={"Parabéns!"} text={alertSuccess} />
+        )}
 
         <Link to="/">Voltar para o login</Link>
       </Form>
